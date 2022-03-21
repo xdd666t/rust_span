@@ -4,6 +4,7 @@ extern crate rocket;
 
 mod web;
 mod data;
+mod database;
 
 fn main() {
     web::main();
