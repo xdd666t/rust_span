@@ -2,6 +2,8 @@
 #[macro_use]
 extern crate rocket;
 
+use mysql::Pool;
+
 mod web;
 mod data;
 mod database;
