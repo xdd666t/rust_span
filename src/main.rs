@@ -2,12 +2,14 @@
 #[macro_use]
 extern crate rocket;
 
-use mysql::Pool;
-
 mod web;
 mod data;
 mod database;
 
 fn main() {
+    //连接数据
+    database::connect::main();
+
+    //初始化web
     web::main();
 }
