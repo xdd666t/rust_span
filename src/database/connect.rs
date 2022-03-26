@@ -1,16 +1,15 @@
-// use mysql::*;
-// use mysql::prelude::*;
 use rbatis::rbatis::Rbatis;
 
 pub async fn main() {
-    // let database_result = Database::new();
-    // if let Ok(mut database) = database_result {
-    //     database.insert();
-    // }
-
     let rb = Rbatis::new();
     // 连接数据库,自动判断驱动类型"mysql://*","postgres://*","sqlite://*","mssql://*"加载驱动
-    rb.link("mysql://root:yt66@localhost:3306/rust").await.unwrap();
+    let result = rb.link("mysql://root:yt66@localhost:3306/rust").await;
+    if let Err(e) = result {
+        println!("{}", e);
+        return;
+    }
+    println!("--------------------------数据库连接成功--------------------------");
+
     // 自定义连接池参数。(可选)
     // use crate::core::db::DBPoolOptions;
     // let mut opt =DBPoolOptions::new();

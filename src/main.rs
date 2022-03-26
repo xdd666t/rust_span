@@ -5,10 +5,12 @@ extern crate rocket;
 mod web;
 mod data;
 mod database;
+mod config;
 
-fn main() {
+#[tokio::main]
+async fn main() {
     //连接数据
-    database::connect::main();
+    database::connect::main().await;
 
     //初始化web
     web::main();
