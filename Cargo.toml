@@ -8,8 +8,8 @@ edition = "2021"
 # 通配符*表示可以使用任何版本，通常会拉取最新版本
 [dependencies]
 futures = "0.3.4"
-# web框架
-rocket = "0.4.10"
+# web框架 https://github.com/actix/actix-web
+actix-web = "4"
 # 数据库 https://docs.rs/mysql/latest/mysql/
 mysql = "22.1.0"
 # rbson (required)
@@ -25,3 +25,5 @@ rbatis =  { version = "3.1" }
 tokio = { version = "1", features = ["full"] }
 # 或者，如果你使用 其他运行时，或者除mysql外排除其他数据库类型，改用这个
 # rbatis = { version = "3.1", default-features = false, features = ["mysql","runtime-tokio-rustls"] }
+#static
+lazy_static = "1.4.0"

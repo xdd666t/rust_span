@@ -1,6 +1,6 @@
 ///服务启动配置
 #[derive(Debug, PartialEq, serde::Serialize, serde::Deserialize)]
-pub struct ApplicationConfig {
+pub struct AppConfig {
     pub debug: bool,
     ///当前服务地址
     pub server_url: String,
@@ -37,17 +37,12 @@ pub struct ApplicationConfig {
 }
 
 ///默认配置
-impl Default for ApplicationConfig {
+impl Default for AppConfig {
     fn default() -> Self {
         let yml_data = include_str!("../../application.yml");
         //读取配置
-        let result:ApplicationConfig = serde_yaml::from_str(yml_data).expect("load config file fail");
-        if result.debug {
-            println!("[abs_admin] load config:{:?}",result);
-            println!("[abs_admin] ///////////////////// Start On Debug Mode ////////////////////////////");
-        } else {
-            println!("[abs_admin] release_mode is enable!")
-        }
+        let result = serde_yaml::from_str(yml_data)
+            .expect("load config file fail");
         result
     }
 }

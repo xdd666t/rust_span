@@ -1,21 +1,21 @@
-pub mod web_api;
+use actix_web::{App, HttpServer};
+use rbatis::crud::CRUD;
+use crate::service::CONTEXT;
 
-pub fn main() {
-    let default = 1;
+mod web_api;
 
-    match default {
-        //闭包写法
-        1 => invoke(web_api::init_web),
-        _ => {}
-    }
+pub async fn init_web() -> std::io::Result<()> {
+    HttpServer::new(|| {
+        App::new()
+            .service(web_api::index)
+    })
+        .bind(&CONTEXT.config.server_url)?
+        .run()
+        .await
 }
 
-fn invoke(method: fn()) {
-    println!();
-    println!("web: 打印开始");
-    println!("*************************************************");
-    method();
-    println!("*************************************************");
-    println!("web: 打印结束");
-    println!();
+fn test() {
+    CONTEXT.r_batis.save();
 }
+
+

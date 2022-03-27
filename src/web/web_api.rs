@@ -1,20 +1,14 @@
+use actix_web::{HttpResponse, Responder};
 use crate::data::base_info::BaseResult;
 
-pub fn init_web() {
-    rocket::ignite()
-        .mount(
-            "/",
-            routes![index],
-        ).launch();
-}
 
 #[get("/")]
-fn index() -> String {
+pub async fn index() -> impl Responder {
     let info = BaseResult {
-        code: String::from("11111111"),
-        data: String::from("2222222"),
+        code: String::from("222222222"),
+        data: String::from("333333333"),
         success: true,
     };
     let msg = serde_json::to_string(&info).unwrap();
-    msg
+    HttpResponse::Ok().body(msg)
 }

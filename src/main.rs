@@ -1,17 +1,11 @@
-#![feature(proc_macro_hygiene, decl_macro)]
-#[macro_use]
-extern crate rocket;
-
-mod web;
-mod data;
-mod database;
-mod config;
+use rust_web::service::CONTEXT;
+use rust_web::web;
 
 #[tokio::main]
-async fn main() {
+async fn main() -> std::io::Result<()>{
     //连接数据
-    database::connect::main().await;
+    CONTEXT.link_db().await;
 
     //初始化web
-    web::main();
+    web::init_web().await
 }
