@@ -9,8 +9,8 @@
 extern crate actix_web;
 #[macro_use]
 extern crate lazy_static;
-// #[macro_use]
-// extern crate rbatis;
+#[macro_use]
+extern crate rbatis;
 
 ///配置模块
 pub mod config;

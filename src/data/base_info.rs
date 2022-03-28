@@ -1,7 +1,7 @@
-use serde::{Serialize, Deserialize};
+use serde::{Deserialize, Serialize};
 
 // base info
-#[derive(Serialize, Deserialize)]
+#[derive(CRUDTable, Serialize, Deserialize, Clone, Debug)]
 pub struct BaseResult {
     pub code: String,
     pub data: String,
